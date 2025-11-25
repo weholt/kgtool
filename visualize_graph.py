@@ -64,7 +64,7 @@ def visualize_graph(graph_path: Path):
         avg_connections = sum(node_connections.values()) / len(nodes) if nodes else 0
         max_connections = max(node_connections.values()) if node_connections else 0
         
-        print(f"Isolated nodes:  {isolated:3d} ({isolated/len(nodes)*100:.1f}%)")
+        print(f"Isolated nodes:  {isolated:3d} ({(isolated/len(nodes)*100) if nodes else 0:.1f}%)")
         print(f"Avg connections: {avg_connections:5.2f}")
         print(f"Max connections: {max_connections:3d}")
         print()
