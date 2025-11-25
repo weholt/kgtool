@@ -109,6 +109,9 @@ def classify_node_topics(
         best_topic = None
         best_score = 0
         for topic_name, terms in topic_terms.items():
+            if not terms:
+                # Skip topics without terms to avoid max() on an empty sequence
+                continue
             score = sum(
                 max(fuzz.ratio(nt, tt) for tt in terms) for nt in node_top_terms
             )
