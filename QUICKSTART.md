@@ -7,7 +7,7 @@ Get started with the Knowledge Graph Tool in 5 minutes!
 ```bash
 # Clone the repository
 git clone <your-repo-url>
-cd knowledge_graph_tool
+cd kgtool
 
 # Install dependencies
 uv sync --extra test
@@ -23,14 +23,14 @@ kgtool --help
 ```bash
 kgtool discover-topics \
     --input tests/data/sample_spec.md \
-    --output topics.json \
+    --output topic_terms.json \
     --num-topics 4 \
     --terms-per-topic 10
 ```
 
 **What it does:** Analyzes your document and automatically identifies 4 major topics using machine learning.
 
-**Output:** `topics.json` with discovered topics like:
+**Output:** `topic_terms.json` with discovered topics like:
 ```json
 {
   "topic_0": ["frontend", "react", "ui", "component", ...],
@@ -45,8 +45,8 @@ kgtool discover-topics \
 kgtool build \
     --input tests/data/sample_spec.md \
     --output my_graph \
-    --min-sim 0.25 \
-    --topics topics.json
+    --min-sim 0.3 \
+    --topics topic_terms.json
 ```
 
 **What it does:** 
@@ -126,7 +126,7 @@ kgtool extract --topic security --graph kb/graph.json --output for_security_revi
 Controls how concepts are linked:
 
 - `0.4` - Very strict, only highly related concepts linked (fewer edges)
-- `0.25` - Balanced (default, recommended)
+- `0.3` - Balanced (default, recommended)
 - `0.15` - Loose, more connections (more context, some noise)
 
 ### `--top-keywords` and `--top-keyphrases`
