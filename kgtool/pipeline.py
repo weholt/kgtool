@@ -260,7 +260,7 @@ def build_graph(
             f.write(f"**Keywords:** {', '.join(data['keywords'])}\n\n")
             f.write(f"**Keyphrases:** {', '.join(data['keyphrases'])}\n\n")
             f.write("---\n\n")
-            f.write(data["body"])
+            f.write(data["body"] + "\n")
 
     print(f"Markdown nodes written to: {nodes_dir}/")
 
