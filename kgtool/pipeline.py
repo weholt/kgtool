@@ -145,6 +145,12 @@ def discover_topics(
     )
     X = vectorizer.fit_transform(docs)
 
+    if len(docs) < num_topics:
+        raise ValueError(
+            f"Requested num_topics={num_topics} but only {len(docs)} chunks were found. "
+            "Reduce num_topics or add more sections."
+        )
+
     kmeans = KMeans(n_clusters=num_topics, random_state=42, n_init=10)
     kmeans.fit(X)
 
